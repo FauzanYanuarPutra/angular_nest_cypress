@@ -1,0 +1,17 @@
+<div>
+  <form action="" (submit)="Register()">
+    <div>
+      <label for="username">Username</label>
+      <input type="text" name="username" [(ngModel)]="form.username">
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="text" name="email" [(ngModel)]="form.email">
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" [(ngModel)]="form.password">
+    </div>
+    <button type="submit">Login</button>
+  </form>
+</div>
