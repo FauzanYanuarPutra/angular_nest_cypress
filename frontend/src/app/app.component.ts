@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { setUser } from './store/actions/uer.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,10 +23,16 @@ export class AppComponent {
 
   private userSubscription: Subscription;
 
-  constructor(private store: Store<{ user: number }>) {
+  constructor(private store: Store<{ user: number }>, private router: Router) {
     this.userSubscription = store.select('user').subscribe(user => {
       this.user$ = user;
     });
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.store.dispatch(setUser({ user: null }));
+    this.router.navigate(['/']);
   }
 }
 

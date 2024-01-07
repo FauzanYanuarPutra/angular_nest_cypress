@@ -17,6 +17,7 @@ export class UserService {
 
     const result = this.http.get<boolean>(`${environment.URL_BACKEND}/auth/check-token`, { headers: { Authorization: `Bearer ${token}` } });
 
+
     result.subscribe(data => {
       this.store.dispatch(setUser({ user: data }));
     })

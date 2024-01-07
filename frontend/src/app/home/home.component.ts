@@ -13,6 +13,7 @@ import { BlogService } from '../dashboard/blog/blog.service';
 export class HomeComponent {
   user$: any = 'asik';
   blogs$: any = [];
+  apiUrl = environment.URL_BACKEND;
 
   private userSubscription: Subscription;
   private blogSubscription: Subscription;
@@ -22,7 +23,7 @@ export class HomeComponent {
       this.user$ = user;
     });
     this.blogSubscription = blogService.getBlogs().subscribe(blogs => {
-      console.log(blogs);
+      this.blogs$ = blogs;
     })
   }
 

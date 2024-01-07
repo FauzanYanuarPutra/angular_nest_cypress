@@ -1,12 +1,51 @@
-<p>dashboard works!</p>
+<!-- <p>dashboard works!</p>
 
 <p *ngIf="user$">
   Hi, {{user$.username}}
 </p>
 
-<button data-cy="logout-button" (click)="Logout()">Logout</button>
+<button data-cy="logout-button" (click)="Logout()">Logout</button> -->
 
-<a href="" routerLink="/dashboard/create">Create</a>
+
+<div class="w-[90%] max-w-[1200px] my-10 mx-auto flex flex-col">
+  <h1 class="text-center text-3xl font-bold mt-10 bg-">My Blog</h1>
+  <div class="w-full flex justify-end">
+    <a href="" routerLink="/dashboard/create" class="bg-green-500 px-8 py-2 rounded-lg text-white text-md font-bold">Create Blog</a>
+  </div>
+</div>
+
+
+<div class="w-[90%] max-w-[1200px]  mx-auto grid grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div *ngFor="let blog of user$.blogs" class="w-full bg-white shadow-xl rounded-lg">
+    <div class="relative">
+      <img src="{{apiUrl}}/{{blog.image}}" alt="" class="w-full h-[100px] object-cover">
+      <p class="text-sm absolute bottom-3 left-3 bg-green-800 font-medium rounded-lg px-6 py-1 text-white">
+        Di posting oleh
+        {{user$.username}}
+      </p>
+    </div>
+    <div class="p-6 grid gap-4">
+
+      <p class="font-bold text-xl">
+        {{blog.title}}
+      </p>
+      <p class="text-sm text-gray-600 ">
+        {{blog.description}}
+      </p>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="bg-green-500 p-1 text-center rounded-lg text-white text-md font-bold cursor-pointer" routerLink="/dashboard/edit/{{blog.id}}">
+          Edit
+        </div>
+        <div class="bg-red-500 p-1 text-center rounded-lg text-white text-md font-bold cursor-pointer"  (click)="DeleteBlog(blog.id)">
+          Delete
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 

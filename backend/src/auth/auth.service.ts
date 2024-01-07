@@ -30,12 +30,10 @@ export class AuthService {
       password = await bcrypt.compare(pass, user.password);
     }
 
-
     if (!password) {
       console.log('error')
       throw new UnauthorizedException('Incorrect username or password');
     }
-
 
     const result = {
       id: user.id,
@@ -51,14 +49,13 @@ export class AuthService {
   }
 
   async register(body: any) {
-    console.log(body)
     const user = await this.userService.findOne(body.username);
 
     if(user) {
-      throw new UnauthorizedException('User already exists');
+      user.username = body.username + Math.random()
     }
 
-    const data: any = this.userService.create(body)
+    const data: any = await this.userService.create(body)
 
     const result = {
       id: data.id,
@@ -67,9 +64,11 @@ export class AuthService {
       roles: data.role,
     }
 
+
     return {
       userId: result,
       access_token: await this.jwtService.sign(result)
-    }
+    };
   }
 }
+

@@ -19,9 +19,15 @@ export class AuthService {
 
     const result = this.http.get<boolean>(`${environment.URL_BACKEND}/auth/check-token`, { headers: { Authorization: `Bearer ${token}` } });
 
-    result.subscribe(data => {
-      this.store.dispatch(setUser({ user: data }));
-    })
+    result.subscribe(
+      data => {
+        this.store.dispatch(setUser({ user: data }));
+      },
+      error => {
+        console.error('Authentication error:', error);
+        this.router.navigate(['/login']);
+      }
+    );
 
 
     return result

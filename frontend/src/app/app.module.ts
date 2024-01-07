@@ -32,8 +32,8 @@ import { ToastrModule, provideToastr } from 'ngx-toastr';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
-      positionClass: 'inline',
+      timeOut: 1000,
+      positionClass: 'toast-bottom-right',
       preventDuplicates: true
     }),
     StoreModule.forRoot({user: userReducer})

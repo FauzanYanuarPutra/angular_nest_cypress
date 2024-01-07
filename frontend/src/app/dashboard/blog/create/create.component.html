@@ -9,10 +9,10 @@
 
 <div>
 </div> -->
-<h1 class="text-center text-3xl font-bold mt-10 ">Create Blog</h1>
 
+<h1 class="text-center text-3xl font-bold mt-10 ">{{id ? 'Update' : 'Create'}} Blog</h1>
 
-<div class="w-full flex gap-4 justify-center my-10 mx-auto max-w-[600px]">
+<div class=" flex gap-4 justify-center w-[90%] max-w-[600px] my-10 mx-auto">
   <form action="" (submit)="submitForm()" id="form-blog" class="flex flex-col gap-3 justify-center items-center w-full">
     <div class="grid grid-cols-1 w-full">
       <label for="title">Title</label>
@@ -25,10 +25,10 @@
     <div  class="grid grid-cols-1 w-full">
       <label for="image">Image</label>
       <input type="file" name="image" accept="image/*" (change)="onFileSelected($event)">
-      <img *ngIf="formBlog.image" [src]="imagePreview" alt="Image Preview" class="image-preview">
+      <img *ngIf="formBlog.image" [src]="imagePreview || formBlog.image" alt="Image Preview" class="image-preview">
     </div>
     <div class="w-full text-end">
-      <button type="submit" class="bg-green-500 p-3 rounded-lg text-white text-md font-bold text-end">Create</button>
+      <button type="submit" class="bg-green-500 p-3 rounded-lg text-white text-md font-bold text-end">{{id ? 'Update' : 'Create'}}</button>
     </div>
   </form>
 </div>

@@ -4,6 +4,8 @@
     <a routerLink="/" routerLinkActive="home text-gray-600" [routerLinkActiveOptions]="{ exact: true }">Home</a>
     <ng-container *ngIf="user$; else notLoggedIn">
       <a routerLink="/dashboard" routerLinkActive="active text-gray-600">Dashboard</a>
+      <button data-cy="logout-button" (click)="logout()">Logout</button>
+
     </ng-container>
     <ng-template #notLoggedIn>
       <a routerLink="/login" routerLinkActive="active text-gray-600">Login</a>
@@ -12,6 +14,6 @@
     </ng-template>
   </div>
 </div>
-<router-outlet></router-outlet>
 
 <router-outlet></router-outlet>
+

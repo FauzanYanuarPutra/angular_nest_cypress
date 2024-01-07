@@ -10,7 +10,7 @@ export class UsersService {
   constructor(@InjectRepository(User) private readonly usersRepository: Repository<User>) { }
   
   async findAll() {
-    return this.usersRepository.find({ relations: ['role', 'role.permissions'] });
+    return this.usersRepository.find({ relations: ['role', 'role.permissions', 'blogs'], order: { blogs: { id: 'DESC' } } });
   }
 
   async findById(id: string) {
@@ -21,7 +21,7 @@ export class UsersService {
 
     const find = await this.usersRepository.findOne({
       where: { id: NumID },
-      relations: ['role', 'role.permissions']
+      relations: ['role', 'role.permissions', 'blogs']
     })
 
     if(!find) {
@@ -34,7 +34,7 @@ export class UsersService {
   async findOne(username: string): Promise<any> {
     return this.usersRepository.findOne({
       where: { username },
-      relations: ['role', 'role.permissions']
+      relations: ['role', 'role.permissions', 'blogs']
     });
   }
 
@@ -45,17 +45,10 @@ export class UsersService {
     const paswword = await bcrypt.hash(user.password, 10);
 
     user.password = paswword
-
-    
     
     const result = await this.usersRepository.save(user);
     
-    return {
-      id: result.id,
-      username: result.username,
-      password: result.password,
-      role: result.role
-    }
+    return result
   }
 
   async deleteRole(id: number) {
@@ -66,7 +59,7 @@ export class UsersService {
 
     const find = await this.usersRepository.findOne({
       where: { id: NumID },
-      relations: ['role', 'role.permissions']
+      relations: ['role', 'role.permissions', 'blogs']
     })
 
     if(!find) {
@@ -77,5 +70,6 @@ export class UsersService {
     return await this.usersRepository.save(find);
   }  
 }
+
 
 

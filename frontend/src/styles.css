@@ -25,3 +25,11 @@
 /* ngx-toastr overrides for Bootstrap 5 (if you're using Bootstrap 5) */
 /* Uncomment the line below if you are using Bootstrap 5 */
 /* @import 'ngx-toastr/toastr-bs5-alert.css'; */
+
+.toast-top-center {
+  bottom: 0;
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+  width: 100%;
+}

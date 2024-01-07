@@ -24,13 +24,17 @@ export class LoginComponent {
     this.loginService.login(this.form).subscribe(
       (data: any) => {
         localStorage.setItem('token', data.access_token);
-        this.toastr.success('Success', 'Login successful!');
+        this.toastr.success('Success', 'Login successful!', {
+          positionClass: 'toast-bottom-left'
+        });
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
         }, 0);
       },
       (error) => {
-        this.toastr.error('Error', 'Email Or Password');
+        this.toastr.error('Error', 'Email Or Password', {
+          positionClass: 'toast-bottom-left'
+        });
         console.error(error);
       }
     );
@@ -38,5 +42,6 @@ export class LoginComponent {
 
 
 }
+
 
 
