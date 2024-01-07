@@ -26,6 +26,5 @@ export class HomeComponent {
 
   onClick() {
     this.store.dispatch(setUser({ user: { name: 'anjay' } }));
-
   }
 }

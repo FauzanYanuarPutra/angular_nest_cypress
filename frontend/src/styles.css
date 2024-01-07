@@ -2,3 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr.css';
+
+/* regular style toast */
+@import 'ngx-toastr/toastr';
+
+/* bootstrap style toast */
+/* or import a bootstrap 4 alert styled design (CSS ONLY) */
+/* should be after your bootstrap imports, it uses bs4 variables, mixins, functions */
+@import 'ngx-toastr/toastr-bs4-alert.css';
+
+/* if you'd like to use it without importing all of bootstrap it requires */
+/* Bootstrap 4 */
+@import 'bootstrap/dist/css/bootstrap.min.css'; /* Adjust the path based on your project structure */
+
+/* Bootstrap 5 */
+/* Uncomment the line below if you are using Bootstrap 5 */
+/* @import 'ngx-toastr/toastr-bs5-alert.css'; */
+
+/* ngx-toastr overrides for Bootstrap 5 (if you're using Bootstrap 5) */
+/* Uncomment the line below if you are using Bootstrap 5 */
+/* @import 'ngx-toastr/toastr-bs5-alert.css'; */

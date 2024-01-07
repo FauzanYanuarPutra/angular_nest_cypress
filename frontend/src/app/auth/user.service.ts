@@ -15,8 +15,6 @@ export class UserService {
   isAuthenticated(): any {
     const token = localStorage.getItem('token');
 
-    console.log('asik')
-
     const result = this.http.get<boolean>(`${environment.URL_BACKEND}/auth/check-token`, { headers: { Authorization: `Bearer ${token}` } });
 
     result.subscribe(data => {

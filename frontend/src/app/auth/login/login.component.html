@@ -1,17 +1,14 @@
-<div>
-  <form action="" (submit)="Login()">
-    <div>
-      <label for="username">Username</label>
-      <input type="text" name="username" [(ngModel)]="form.username">
+<h1 class="text-center text-3xl font-bold mt-10 ">Login</h1>
+<div class="w-full flex gap-4 justify-center my-10">
+  <form action="" (submit)="Login()" id="form-login" class="flex flex-col gap-3">
+    <div class="grid grid-cols-3 justify-center items-center">
+      <label for="username" class="col-span-1">Username</label>
+      <input type="text" name="username" [(ngModel)]="form.username" class="col-span-2 rounded-lg border-slate-300 h-9">
     </div>
-    <div>
-      <label for="email">Email</label>
-      <input type="text" name="email" [(ngModel)]="form.email">
+    <div class="grid grid-cols-3 justify-center items-center">
+      <label for="password" class="col-span-1">Password</label>
+      <input type="password" name="password" [(ngModel)]="form.password" class="col-span-2 rounded-lg border-slate-300 h-9">
     </div>
-    <div>
-      <label for="password">Password</label>
-      <input type="password" name="password" [(ngModel)]="form.password">
-    </div>
-    <button type="submit">Login</button>
+    <button type="submit" class="bg-green-500 p-3 rounded-lg text-white text-md font-bold">Login</button>
   </form>
 </div>

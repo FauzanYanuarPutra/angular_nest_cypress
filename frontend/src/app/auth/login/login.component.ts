@@ -1,25 +1,42 @@
 import { Component } from '@angular/core';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   form = {
     username: '',
-    email: '',
     password: ''
   }
 
   constructor(
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   Login() {
-    this.loginService.login(this.form).subscribe((data: any) => {
-      localStorage.setItem('token', data.access_token);
-    });
+    this.loginService.login(this.form).subscribe(
+      (data: any) => {
+        localStorage.setItem('token', data.access_token);
+        this.toastr.success('Success', 'Login successful!');
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 0);
+      },
+      (error) => {
+        this.toastr.error('Error', 'Email Or Password');
+        console.error(error);
+      }
+    );
   }
+
+
 }
+
+

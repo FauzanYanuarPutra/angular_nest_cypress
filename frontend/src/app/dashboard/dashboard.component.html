@@ -1,5 +1,13 @@
 <p>dashboard works!</p>
 
 <p *ngIf="user$">
-  {{user$.username}}
+  Hi, {{user$.username}}
 </p>
+
+<button data-cy="logout-button" (click)="Logout()">Logout</button>
+
+<a href="" routerLink="/dashboard/create">Create</a>
+
+
+
+

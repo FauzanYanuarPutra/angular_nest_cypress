@@ -12,6 +12,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CreateComponent } from './dashboard/blog/create/create.component';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { ToastrModule, provideToastr } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -19,16 +22,26 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'inline',
+      preventDuplicates: true
+    }),
     StoreModule.forRoot({user: userReducer})
   ],
-  providers: [],
+  providers: [
+    provideAnimations(),
+    provideToastr()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

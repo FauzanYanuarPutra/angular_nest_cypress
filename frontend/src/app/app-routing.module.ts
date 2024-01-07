@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/auth.guard';
 import { UserGuard } from './auth/user.guard';
+import { CreateComponent } from './dashboard/blog/create/create.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,17 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: DashboardComponent
+      },
+      {
+        path: 'create',
+        component: CreateComponent
+      }
+    ]
   },
   {
     path: 'login',
@@ -28,6 +38,10 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     canActivate: [UserGuard]
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 
@@ -36,4 +50,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 

@@ -1,14 +1,17 @@
 <div class="w-full bg-orange-500 p-5 text-white flex justify-between">
-  <div>
-
-  </div>
+  <div></div>
   <div class="flex gap-3 font-medium">
     <a routerLink="/" routerLinkActive="home text-gray-600" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/dashboard" routerLinkActive="home text-gray-600" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
-    <a routerLink="/login" routerLinkActive="active text-gray-600">Login</a>
-    |
-    <a routerLink="/register" routerLinkActive="active text-gray-600">Register</a>
-
+    <ng-container *ngIf="user$; else notLoggedIn">
+      <a routerLink="/dashboard" routerLinkActive="active text-gray-600">Dashboard</a>
+    </ng-container>
+    <ng-template #notLoggedIn>
+      <a routerLink="/login" routerLinkActive="active text-gray-600">Login</a>
+      |
+      <a routerLink="/register" routerLinkActive="active text-gray-600">Register</a>
+    </ng-template>
   </div>
 </div>
+<router-outlet></router-outlet>
+
 <router-outlet></router-outlet>

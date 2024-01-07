@@ -14,3 +14,4 @@ export class RegisterService {
     return this.httpClient.post(`${environment.URL_BACKEND}/auth/register`, body);
   }
 }
+

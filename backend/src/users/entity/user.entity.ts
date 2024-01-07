@@ -1,6 +1,7 @@
 import { Exclude } from 'class-transformer';
+import { Blog } from 'src/blogs/entity/blog.entity';
 import { Role } from 'src/roles/entity/role.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm'
 
 @Entity('users')
 export class User {
@@ -16,6 +17,9 @@ export class User {
 
   @ManyToOne(() => Role, role => role.users, { nullable: true })
   role: Role
+
+  @OneToMany(() => Blog, role => role.user, {nullable: true})
+  blogs: Blog[]
 }
 
 

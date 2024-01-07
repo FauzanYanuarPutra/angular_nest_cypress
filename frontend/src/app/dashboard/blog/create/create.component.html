@@ -1,0 +1,35 @@
+<p>dashboard works!</p>
+
+<p *ngIf="user$">
+  Hi, {{user$.username}}
+</p>
+
+<button data-cy="logout-button" (click)="Logout()">Logout</button>
+
+
+<div>
+asdasd
+
+</div>
+<div class="w-full flex gap-4 justify-center my-10">
+  <form action="" (submit)="submitForm()" id="form-blog" class="flex flex-col gap-3 justify-center items-center">
+    <div class="grid grid-cols-1">
+      <label for="title">Title</label>
+      <input type="text" name="title" [(ngModel)]="formBlog.title" class="w-full">
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <input type="text" name="description" [(ngModel)]="formBlog.description">
+    </div>
+    <div>
+      <label for="image">Image</label>
+      <input type="file" name="image" accept="image/*" (change)="onFileSelected($event)">
+      <img *ngIf="formBlog.image" [src]="imagePreview" alt="Image Preview" class="image-preview">
+    </div>
+    <button type="submit">Create</button>
+  </form>
+</div>
+
+
+
+
