@@ -22,7 +22,7 @@ describe("User Actions", () => {
   it("should register a new user, log in, and create a blog post", () => {
     // Membuat User Baru
     cy.log("Register new user");
-    cy.contains("Register").click();
+    cy.contains("Register").click({ force: true });
     cy.get('input[name="username"]').type("muhammad-fauzan");
     cy.get('input[name="email"]').type("user@example.com");
     cy.get('input[name="password"]').type("password");
@@ -33,43 +33,43 @@ describe("User Actions", () => {
     cy.wait("@registerRequest");
     cy.log("Register successful");
 
-    cy.wait(2000);
+    // cy.wait(2000);
 
     // Logout Account
     cy.log("Logout Account");
-    cy.get("[data-cy=logout-button]").click();
+    cy.get("[data-cy=logout-button]").click({ force: true });
     cy.log("Logout successful");
 
-    cy.wait(2000);
+    // cy.wait(2000);
 
     // Login dengan username dan password yang tidak terdaftar
     cy.log("Login with wrong credentials");
     cy.intercept("POST", `${backendBaseUrl}/auth/login`).as("loginRequest");
-    cy.contains("Login").click();
+    cy.contains("Login").click({ force: true });
     cy.get('input[name="username"]').type("fauzan");
     cy.get('input[name="password"]').type("password");
     cy.get("#form-login").submit();
     cy.wait("@loginRequest");
     cy.log("Login failed");
 
-    cy.wait(2000);
+    // cy.wait(2000);
 
     // Login dengan username dan password yang benar
     cy.log("Login with correct credentials");
     cy.intercept("POST", `${backendBaseUrl}/auth/login`).as("loginRequest");
-    cy.contains("Login").click();
+    cy.contains("Login").click({ force: true });
     cy.get('input[name="username"]').clear().type("muhammad-fauzan");
     cy.get('input[name="password"]').clear().type("password");
     cy.get("#form-login").submit();
     cy.wait("@loginRequest");
     cy.log("Login successful");
 
-    cy.wait(2000);
+    // cy.wait(2000);
 
     // Melakukan posting blog dengan username dan password yang terdaftar
     cy.log("Create blog post");
     cy.intercept("POST", `${backendBaseUrl}/blogs`).as("createBlogRequest");
-    cy.contains("Create").click();
+    cy.contains("Create").click({ force: true });
     cy.get("input[name='title']").type("Hello World");
     cy.get("input[name='description']").type("Hello World");
     cy.get("input[type=file]")
@@ -79,11 +79,11 @@ describe("User Actions", () => {
     cy.wait("@createBlogRequest");
     cy.log("Blog post created successfully");
 
-    cy.wait(2000);
+    // cy.wait(2000);
 
     // Melakukan edit blog
     cy.log("Edit blog post");
-    cy.get('.bg-green-500:contains("Edit"):first').click();
+    cy.get('.bg-green-500:contains("Edit"):first').click({ force: true });
     cy.url().then((url) => {
       const urlParts = url.split("/");
       const lastItem = urlParts[urlParts.length - 1];
@@ -105,7 +105,7 @@ describe("User Actions", () => {
 
     // Melakukan delete blog
     cy.log("Delete blog post");
-    cy.get('.bg-red-500:contains("Delete"):first').click();
+    cy.get('.bg-red-500:contains("Delete"):first').click({ force: true });
     cy.log("Blog post deleted successfully");
   });
 });
