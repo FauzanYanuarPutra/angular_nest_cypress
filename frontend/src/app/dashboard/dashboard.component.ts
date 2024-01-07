@@ -29,7 +29,6 @@ export class DashboardComponent implements OnDestroy {
     });
   }
 
-
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
   }
@@ -46,7 +45,6 @@ export class DashboardComponent implements OnDestroy {
     if (fileInput.files && fileInput.files.length > 0) {
       this.formBlog.image = fileInput.files[0];
 
-      // Display image preview
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreview = e.target.result;
@@ -63,10 +61,9 @@ export class DashboardComponent implements OnDestroy {
 
     try {
       this.blogService.create(formData).subscribe(data => {
-        console.log(data, 'asik');
       });
     } catch (error) {
-      console.log(error, 'asik');
+      console.log(error);
     }
   }
 }

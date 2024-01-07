@@ -2,3 +2,11 @@
 <div (click)="onClick()">Send User</div>
 {{user$.username}}
 
+<div class="w-full max-w-[600px] mx-auto">
+  <div *ngFor="let blog of blogs$">
+    {{blog.image}}
+    {{blog.title}}
+  </div>
+</div>
+
+

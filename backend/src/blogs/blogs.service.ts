@@ -10,17 +10,17 @@ export class BlogsService {
   ) { }
 
   findAll() {
-    return this.blogRepository.find();
+    return this.blogRepository.find({
+      relations: ['user']
+    });
   }
 
   create(body: any) {
 
-    console.log(body)
     const data = this.blogRepository.create({
       ...body
     });
 
-    console.log(data)
-    return this.blogRepository.save(body);
+    return this.blogRepository.save(data);
   }
 }

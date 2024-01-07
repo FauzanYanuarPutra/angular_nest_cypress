@@ -11,6 +11,10 @@ export class BlogService {
     private httpClient: HttpClient
   ) { }
 
+  getBlogs(): Observable<any> {
+    return this.httpClient.get(`${environment.URL_BACKEND}/blogs`);
+  }
+
   create(formData: FormData): Observable<any> {
     return this.httpClient.post(`${environment.URL_BACKEND}/blogs`, formData, {
       headers: {

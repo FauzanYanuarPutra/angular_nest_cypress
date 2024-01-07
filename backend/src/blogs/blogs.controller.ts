@@ -1,10 +1,20 @@
-import { Body, Controller, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { AuthGuard } from 'src/guard/auth.guard';
+import { BlogsService } from './blogs.service';
+import { Public } from 'src/auth/constant';
 
 @Controller('blogs')
 export class BlogsController {
+  constructor(private readonly blogService: BlogsService) { }
+  
+  @Get()
+  @Public()
+  get() {
+    return this.blogService.findAll()
+  }
+    
   @Post()
   @UseGuards(AuthGuard)
   @UseInterceptors(FileInterceptor('image', {
@@ -18,10 +28,9 @@ export class BlogsController {
     }),
   }))
   create(@Body() body: any, @UploadedFile() image: Express.Multer.File, @Req() req: any) {
-    console.log('asik')
-    console.log(req.user)
-    console.log(body, image)
-    // Handle the uploaded image and other data
+    body.image = image.path
+    body.user = req.user
+    return this.blogService.create(body)
   }
 }
 
