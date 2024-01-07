@@ -18,7 +18,7 @@
 <div class="w-[90%] max-w-[1200px]  mx-auto grid grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 gap-4">
   <div *ngFor="let blog of user$.blogs" class="w-full bg-white shadow-xl rounded-lg">
     <div class="relative">
-      <img src="{{apiUrl}}/{{blog.image}}" alt="" class="w-full h-[100px] object-cover">
+      <img src="{{apiUrl}}/{{blog.image}}" alt="" class="w-full h-[200px] object-cover">
       <p class="text-sm absolute bottom-3 left-3 bg-green-800 font-medium rounded-lg px-6 py-1 text-white">
         Di posting oleh
         {{user$.username}}
